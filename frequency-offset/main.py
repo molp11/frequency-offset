@@ -125,6 +125,7 @@ def update_poly(attrname, old, new):
         
 def load_data(attrname, old, new):
     
+    global df
     df = pd.read_csv(join(dirname(__file__), 'data/'+data_select.value)).dropna()
     
     load_page(df)
@@ -136,6 +137,7 @@ def file_callback(attname, old, new):
     file_contents = base64.b64decode(b64_contents).decode('utf-8-sig', errors='ignore')
     file_io = StringIO(file_contents)
     
+    global df
     df = pd.read_csv(file_io).dropna()
     
     load_page(df)
