@@ -338,15 +338,15 @@ def load_page(df):
     #temp.on_change('value', update_temp)
 
     global torder
-    torder = Slider(title="Temperature Polynomial Order", value=1, start=1, end=5, step=1, width=200)
+    torder = Slider(title="Temperature: Polynomial Order", value=1, start=1, end=5, step=1, width=200)
     torder.on_change('value', update_poly)
 
     global order
-    order = Slider(title="Frequency Polynomial Order", value=5, start=1, end=5, step=1, width=200)
+    order = Slider(title="Frequency: Polynomial Order", value=5, start=1, end=5, step=1, width=200)
     order.on_change('value', update_poly)
     
     global segments
-    segments = Slider(title="Frequency # Segments", value=1, start=1, end=5, step=1, width=200)
+    segments = Slider(title="Frequency: # Segments", value=1, start=1, end=5, step=1, width=200)
     segments.on_change('value', update_poly)
 
     global download_button
