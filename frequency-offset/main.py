@@ -384,6 +384,6 @@ for sd in sample_data:
 data_select = Select(title='Select Sample Data File', options=sample_data, value=sample_data[0])
 data_select.on_change('value', load_data)
 
-df = pd.read_csv(join(dirname(__file__), 'data/'+data_select.value))
+df = pd.read_csv(join(dirname(__file__), 'data/'+data_select.value)).dropna()
 
 load_page(df)
