@@ -77,7 +77,9 @@ def get_symbolic_eqn(pwlf_, segment_number):
     return my_eqn.simplify()
 
 def update_poly(attrname, old, new):
-    
+
+    plot.title.text = 'Max Frequency Error (ppb): ' + str(me)
+        
     itmp = pd.DataFrame(data={'x' : temp_source.data['y'], 't' : temp_source.data['x']})
     otmp = group_reduce(itmp)
 
@@ -127,46 +129,6 @@ def load_data(attrname, old, new):
     
     load_page(df)
     
-'''    xname, yname, tname = df.columns[2], df.columns[1], df.columns[3]
-    for name in list(df):
-        if 'mbient' in name or 'MBIENT' in name:
-            xname = name
-        elif 'ensor' in name or 'ENSOR' in name or 'TMP' in name:
-            tname = name
-        elif 'ppb' in name or 'PPB' in name:
-            yname = name
-
-    xsample_select.value = xname
-    xsample_select.options = list(df)
-    tsample_select.value = tname
-    tsample_select.options = list(df)
-    ysample_select.value = yname
-    ysample_select.options = list(df)
-
-    itmp = pd.DataFrame(data={'x' : x, 'y' : y, 't' : t})
-    otmp = group_reduce(itmp)
-
-    tx = np.linspace(min(t), max(t), num=len(t))
-    pt = np.polyfit(otmp.t, otmp.x, 1)[::-1]
-    xnew = [poly(ti, pt) for ti in t]
-    ty = [poly(ti, pt) for ti in tx]
-    eqn_list = [write_poly(pt)]
-    segment_list = ['Temperature Sensor']
-
-    itmp = pd.DataFrame(data={'x' : xnew, 'y' : y})
-    otmp = group_reduce(itmp)
-
-    p = np.polyfit(otmp.x, otmp.y, 5)[::-1]
-    fx = np.linspace(min(xnew), max(xnew), num=len(xnew))
-    fy = [poly(xi, p) for xi in fx]
-    me = np.max([np.abs(poly(xi, p) - yi) for xi, yi in zip(xnew, y)])
-    eqn_list.append([write_poly(p)])
-    segment_list.append(['(' + str(min(xnew)) + ' ' + str(max(xnew)) + ')'])
-
-    temp_source.data = dict(x=t, y=x, tx=tx, ty=ty)
-    plot_source.data = dict(x=xnew, y=y, fx=fx, fy=fy)
-    table_source.data = dict(segment=segment_list, eqn_list=eqn_list)
-'''
 def file_callback(attname, old, new):
     
     raw_contents = file_source.data['file_contents'][0]
@@ -177,50 +139,7 @@ def file_callback(attname, old, new):
     df = pd.read_csv(file_io).dropna()
     
     load_page(df)
-'''    xname, yname, tname = df.columns[2], df.columns[1], df.columns[3]
-    for name in list(df):
-        if 'mbient' in name or 'MBIENT' in name:
-            xname = name
-        elif 'ensor' in name or 'ENSOR' in name or 'TMP' in name:
-            tname = name
-        elif 'ppb' in name or 'PPB' in name:
-            yname = name
 
-    xsample_select.value = xname
-    xsample_select.options = list(df)
-    tsample_select.value = tname
-    tsample_select.options = list(df)
-    ysample_select.value = yname
-    ysample_select.options = list(df)
-                                  
-    x = df[xname].values
-    y = df[yname].values
-    t = df[tname].values
-
-    itmp = pd.DataFrame(data={'x' : x, 'y' : y, 't' : t})
-    otmp = group_reduce(itmp)
-
-    tx = np.linspace(min(t), max(t), num=len(t))
-    pt = np.polyfit(otmp.t, otmp.x, 1)[::-1]
-    xnew = [poly(ti, pt) for ti in t]
-    ty = [poly(ti, pt) for ti in tx]
-    eqn_list = [write_poly(pt)]
-    segment_list = ['Temperature Sensor']
-
-    itmp = pd.DataFrame(data={'x' : xnew, 'y' : y})
-    otmp = group_reduce(itmp)
-
-    p = np.polyfit(otmp.x, otmp.y, 5)[::-1]
-    fx = np.linspace(min(xnew), max(xnew), num=len(xnew))
-    fy = [poly(xi, p) for xi in fx]
-    me = np.max([np.abs(poly(xi, p) - yi) for xi, yi in zip(xnew, y)])
-    eqn_list.append([write_poly(p)])
-    segment_list.append(['(' + str(min(xnew)) + ' ' + str(max(xnew)) + ')'])
-
-    temp_source.data = dict(x=t, y=x, tx=tx, ty=ty)
-    plot_source.data = dict(x=xnew, y=y, fx=fx, fy=fy)
-    table_source.data = dict(segment=segment_list, eqn_list=eqn_list)
-'''
 def choose_column(attrname, old, new):
     
     xname = xsample_select.value
