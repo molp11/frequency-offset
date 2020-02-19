@@ -365,7 +365,7 @@ def load_page(df):
     
     curdoc().clear()
     curdoc().add_root(column(row(data_select, upload_button, download_button), row(column(xsample_select, tsample_select, ysample_select, torder, order, segments), column(tplot), column(plot)), data_table))
-    curdoc().title = "Frequency Offset"
+    curdoc().title = "frequency-offset"
     
 #def update_temp(attrname, old, new):
 #
