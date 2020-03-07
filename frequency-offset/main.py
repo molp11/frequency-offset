@@ -267,7 +267,7 @@ def load_page(df):
     order.on_change('value', update_poly)
     
     global segments
-    segments = Slider(title="Frequency: # Segments", value=1, start=1, end=20, step=1, width=200)
+    segments = Slider(title="Frequency: # Segments", value=1, start=1, end=5, step=1, width=200)
     segments.on_change('value', update_poly)
 
     global download_button
